@@ -1,1 +1,6 @@
-<p>menu-container works!</p>
+<div class="list-group">
+	<app-menu-element
+		*ngFor="let character of characters"
+		[character]="character"
+	></app-menu-element>
+</div>

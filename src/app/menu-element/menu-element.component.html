@@ -1,1 +1,7 @@
-<p>menu-element works!</p>
+<div
+	class="list-group-item list-group-item-action flex-column align-items-start"
+>
+	<h5>{{ character.name }}</h5>
+	<p>Born: {{ character.birthYear }}</p>
+	<p class="small">Species: {{ character.species.join(', ') }}</p>
+</div>
