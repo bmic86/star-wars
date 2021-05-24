@@ -1,7 +1,12 @@
 <div
-	class="list-group-item list-group-item-action flex-column align-items-start"
+	class="
+		list-group-item list-group-item-action
+		flex-column
+		align-items-start
+		py-2
+	"
 >
-	<h5>{{ character.name }}</h5>
-	<p>Born: {{ character.birthYear }}</p>
-	<p class="small">Species: {{ character.species.join(', ') }}</p>
+	<div class="h5">{{ person.name }}</div>
+	<div>Born: {{ person.birthYear }}</div>
+	<div class="small mt-2">Species: {{ person?.species?.join(', ') }}</div>
 </div>

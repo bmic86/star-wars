@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { Character } from '../models/character'
+import { Person } from '../models/person'
 
 @Component({
 	selector: 'app-menu-element',
@@ -7,7 +7,7 @@ import { Character } from '../models/character'
 	styleUrls: ['./menu-element.component.css']
 })
 export class MenuElementComponent implements OnInit {
-	@Input() character!: Character
+	@Input() person!: Person
 
 	constructor() {}
 

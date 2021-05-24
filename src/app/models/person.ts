@@ -1,4 +1,6 @@
-export interface Character {
+import { Observable } from 'rxjs'
+
+export interface Person {
 	name: string
 	//height: number
 	//mass: number
@@ -7,6 +9,7 @@ export interface Character {
 	//eyeColor: string
 	birthYear: string
 	species: string[]
+	//species$: Observable<string[]>
 	//gender: string
 	//vehiclesNum: number
 	//starshipUrls: string[]

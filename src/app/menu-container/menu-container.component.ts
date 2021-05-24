@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-import { Character } from '../models/character'
+import { Component, Input, OnInit } from '@angular/core'
+import { PeoplePage } from '../models/people-page'
 
 @Component({
 	selector: 'app-menu-container',
@@ -7,18 +7,9 @@ import { Character } from '../models/character'
 	styleUrls: ['./menu-container.component.css']
 })
 export class MenuContainerComponent implements OnInit {
-	characters: Character[] = []
+	@Input() page!: PeoplePage
 
 	constructor() {}
 
-	ngOnInit(): void {
-		this.characters = [
-			{
-				name: 'Luke Skywalker',
-				birthYear: '19BBY',
-				species: ['Human', 'test']
-			},
-			{ name: 'other', birthYear: '45BBY', species: ['1', '2'] }
-		]
-	}
+	ngOnInit(): void {}
 }
