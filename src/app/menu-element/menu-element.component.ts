@@ -8,6 +8,7 @@ import { Person } from '../models/person'
 })
 export class MenuElementComponent implements OnInit {
 	@Input() person!: Person
+	@Input() isActive: boolean = false
 
 	constructor() {}
 

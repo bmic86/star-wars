@@ -2,5 +2,7 @@
 	<app-menu-element
 		*ngFor="let person of page?.results"
 		[person]="person"
+		(click)="selectedPerson = person"
+		[isActive]="selectedPerson?.name === person?.name"
 	></app-menu-element>
 </div>

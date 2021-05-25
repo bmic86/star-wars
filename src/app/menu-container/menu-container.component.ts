@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { PeoplePage } from '../models/people-page'
+import { Person } from '../models/person'
 
 @Component({
 	selector: 'app-menu-container',
@@ -8,6 +9,8 @@ import { PeoplePage } from '../models/people-page'
 })
 export class MenuContainerComponent implements OnInit {
 	@Input() page!: PeoplePage
+
+	selectedPerson: Person | null = null
 
 	constructor() {}
 
