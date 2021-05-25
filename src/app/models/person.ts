@@ -8,8 +8,7 @@ export interface Person {
 	//skinColor: string
 	//eyeColor: string
 	birthYear: string
-	species: string[]
-	//species$: Observable<string[]>
+	species$: Observable<string[]>
 	//gender: string
 	//vehiclesNum: number
 	//starshipUrls: string[]

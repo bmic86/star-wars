@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { concat, forkJoin, merge, Observable } from 'rxjs'
-import { map, pluck, reduce } from 'rxjs/operators'
+import { forkJoin, Observable } from 'rxjs'
+import { map, pluck } from 'rxjs/operators'
 import { PeoplePage } from '../models/people-page'
 import { Person } from '../models/person'
 
@@ -13,21 +13,16 @@ export class StarWarsService {
 		return this.httpClient
 			.get<PeoplePage>(`http://swapi.dev/api/people/?page=${page}`)
 			.pipe(
-				map((peoplePage) => {
+				map((peoplePage: PeoplePage) => {
 					peoplePage.results = peoplePage.results.map((person: any) => {
-						// 	let species$: Observable<string[]> = merge(
-						// 		person.species.map(
-						// 			(specieUrl: string) =>
-						// 				this.httpClient
-						// 					.get<Specie>(specieUrl)
-						// 					.pipe(pluck('name')) as Observable<string>
-						// 		).map(x => x.)
-						// 	)
-
 						return {
 							name: person.name,
 							birthYear: person.birth_year,
-							species: person.species
+							species$: forkJoin(
+								person.species.map((specieUrl: string) =>
+									this.httpClient.get(specieUrl).pipe(pluck('name'))
+								)
+							) as Observable<string[]>
 						} as Person
 					})
 					return peoplePage
@@ -35,7 +30,3 @@ export class StarWarsService {
 			)
 	}
 }
-
-//interface Specie {
-//	name: string
-//}

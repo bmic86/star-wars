@@ -1,12 +1,15 @@
 <div
 	class="
+		menu-element
 		list-group-item list-group-item-action
 		flex-column
 		align-items-start
 		py-2
 	"
 >
-	<div class="h5">{{ person.name }}</div>
+	<div class="h5 my-1">{{ person.name }}</div>
 	<div>Born: {{ person.birthYear }}</div>
-	<div class="small mt-2">Species: {{ person?.species?.join(', ') }}</div>
+	<div *ngIf="(person.species$ | async)?.length" class="small my-1">
+		Species: {{ person.species$ | async }}
+	</div>
 </div>
