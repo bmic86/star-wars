@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { forkJoin, Observable } from 'rxjs'
-import { map, pluck } from 'rxjs/operators'
+import { map, pluck, shareReplay } from 'rxjs/operators'
 import { PeoplePage } from '../models/people-page'
 import { Person } from '../models/person'
 import { Starship } from '../models/starship'
@@ -25,16 +25,20 @@ export class StarWarsService {
 							height: person.height,
 							mass: person.mass,
 							vehiclesNum: person.vehicles?.length ?? 0,
-							species$: forkJoin(
-								person.species.map((specieUrl: string) =>
-									this.httpClient.get(specieUrl).pipe(pluck('name'))
-								)
-							) as Observable<string[]>,
-							starships$: forkJoin(
-								person.starships.map((starshipUrl: string) =>
-									this.httpClient.get<Starship>(starshipUrl)
-								)
-							) as Observable<Starship[]>
+							species$: (
+								forkJoin(
+									person.species.map((specieUrl: string) =>
+										this.httpClient.get(specieUrl).pipe(pluck('name'))
+									)
+								) as Observable<string[]>
+							).pipe(shareReplay()),
+							starships$: (
+								forkJoin(
+									person.starships.map((starshipUrl: string) =>
+										this.httpClient.get<Starship>(starshipUrl)
+									)
+								) as Observable<Starship[]>
+							).pipe(shareReplay())
 						} as Person
 					})
 					return peoplePage
