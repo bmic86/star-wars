@@ -1,34 +1,34 @@
-<h1>[Name]</h1>
-<h3>[Specie]</h3>
+<h1>{{ person?.name }}</h1>
+<h3>{{ person?.species$ | async }}</h3>
 
 <ul class="list-group">
 	<li class="list-group-item d-flex justify-content-between align-items-center">
 		birth year
-		<span class="badge badge-primary badge-pill">[14]</span>
+		<span class="badge badge-primary badge-pill">{{ person?.birthYear }}</span>
 	</li>
 	<li class="list-group-item d-flex justify-content-between align-items-center">
 		height
-		<span class="badge badge-primary badge-pill">[2]</span>
+		<span class="badge badge-primary badge-pill">{{ person?.height }}</span>
 	</li>
 	<li class="list-group-item d-flex justify-content-between align-items-center">
 		mass
-		<span class="badge badge-primary badge-pill">[1]</span>
+		<span class="badge badge-primary badge-pill">{{ person?.mass }}</span>
 	</li>
 	<li class="list-group-item d-flex justify-content-between align-items-center">
 		hair color
-		<span class="badge badge-primary badge-pill">[1]</span>
+		<span class="badge badge-primary badge-pill">{{ person?.hairColor }}</span>
 	</li>
 	<li class="list-group-item d-flex justify-content-between align-items-center">
 		skin color
-		<span class="badge badge-primary badge-pill">[1]</span>
+		<span class="badge badge-primary badge-pill">{{ person?.skinColor }}</span>
 	</li>
 	<li class="list-group-item d-flex justify-content-between align-items-center">
 		gender
-		<span class="badge badge-primary badge-pill">[1]</span>
+		<span class="badge badge-primary badge-pill">{{ person?.gender }}</span>
 	</li>
 	<li class="list-group-item d-flex justify-content-between align-items-center">
-		number of vechicles
-		<span class="badge badge-primary badge-pill">[1]</span>
+		number of vehicles
+		<span class="badge badge-primary badge-pill">{{ person?.vehiclesNum }}</span>
 	</li>
 </ul>
 

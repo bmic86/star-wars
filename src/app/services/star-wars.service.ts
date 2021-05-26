@@ -18,6 +18,12 @@ export class StarWarsService {
 						return {
 							name: person.name,
 							birthYear: person.birth_year,
+							gender: person.gender,
+							skinColor: person.skin_color,
+							hairColor: person.hair_color,
+							height: person.height,
+							mass: person.mass,
+							vehiclesNum: person.vehicles?.length ?? 0,
 							species$: forkJoin(
 								person.species.map((specieUrl: string) =>
 									this.httpClient.get(specieUrl).pipe(pluck('name'))

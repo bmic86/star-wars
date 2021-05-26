@@ -2,14 +2,12 @@ import { Observable } from 'rxjs'
 
 export interface Person {
 	name: string
-	//height: number
-	//mass: number
-	//hairColor: string
-	//skinColor: string
-	//eyeColor: string
+	height: string
+	mass: string
+	hairColor: string
+	skinColor: string
 	birthYear: string
 	species$: Observable<string[]>
-	//gender: string
-	//vehiclesNum: number
-	//starshipUrls: string[]
+	gender: string
+	vehiclesNum: number
 }

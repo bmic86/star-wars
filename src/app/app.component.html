@@ -3,10 +3,11 @@
 	<div class="container-fluid">
 		<div class="row my-3">
 			<div class="col-5 col-sm-4 col-xl-3">
-				<app-menu-container [page]="(page$ | async)!"></app-menu-container>
+				<app-menu-container [page]="(page$ | async)!" (onSelectedPersonChanged)="selectedPersonChanged($event)">
+				</app-menu-container>
 			</div>
 			<div class="col-7 col-sm-8 col-xl-9">
-				<app-profile-view></app-profile-view>
+				<app-profile-view *ngIf="selectedPerson" [person]="selectedPerson"></app-profile-view>
 			</div>
 		</div>
 	</div>
