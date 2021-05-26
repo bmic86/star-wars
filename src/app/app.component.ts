@@ -10,7 +10,6 @@ import { StarWarsService } from './services/star-wars.service'
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-	title = 'star-wars'
 	page$!: Observable<PeoplePage>
 	selectedPerson: Person | null = null
 

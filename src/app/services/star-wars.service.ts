@@ -4,6 +4,7 @@ import { forkJoin, Observable } from 'rxjs'
 import { map, pluck } from 'rxjs/operators'
 import { PeoplePage } from '../models/people-page'
 import { Person } from '../models/person'
+import { Starship } from '../models/starship'
 
 @Injectable()
 export class StarWarsService {
@@ -28,7 +29,12 @@ export class StarWarsService {
 								person.species.map((specieUrl: string) =>
 									this.httpClient.get(specieUrl).pipe(pluck('name'))
 								)
-							) as Observable<string[]>
+							) as Observable<string[]>,
+							starships$: forkJoin(
+								person.starships.map((starshipUrl: string) =>
+									this.httpClient.get<Starship>(starshipUrl)
+								)
+							) as Observable<Starship[]>
 						} as Person
 					})
 					return peoplePage

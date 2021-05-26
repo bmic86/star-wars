@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs'
+import { Starship } from './starship'
 
 export interface Person {
 	name: string
@@ -7,7 +8,8 @@ export interface Person {
 	hairColor: string
 	skinColor: string
 	birthYear: string
-	species$: Observable<string[]>
 	gender: string
 	vehiclesNum: number
+	species$: Observable<string[]>
+	starships$: Observable<Starship[]>
 }
