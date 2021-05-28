@@ -9,6 +9,7 @@ import { MenuElementComponent } from './menu-element/menu-element.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { StarWarsService } from './services/star-wars.service'
 import { HttpClientModule } from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http'
 		MenuContainerComponent,
 		MenuElementComponent
 	],
-	imports: [BrowserModule, NgbModule, HttpClientModule],
+	imports: [BrowserModule, NgbModule, HttpClientModule, ReactiveFormsModule],
 	providers: [StarWarsService],
 	bootstrap: [AppComponent]
 })

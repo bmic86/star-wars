@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core'
+import { FormControl, FormGroup } from '@angular/forms'
 
 @Component({
-  selector: 'app-navigation-bar',
-  templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.css']
+	selector: 'app-navigation-bar',
+	templateUrl: './navigation-bar.component.html',
+	styleUrls: ['./navigation-bar.component.css']
 })
 export class NavigationBarComponent implements OnInit {
+	@Output() onSearchPerformed: EventEmitter<string> = new EventEmitter<string>()
 
-  constructor() { }
+	searchTextControl!: FormControl
+	searchForm!: FormGroup
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+		this.searchTextControl = new FormControl('')
+		this.searchForm = new FormGroup({
+			searchTextControl: this.searchTextControl
+		})
+	}
 
+	onSubmitSearch(): void {
+		this.onSearchPerformed.emit(this.searchTextControl.value)
+	}
 }

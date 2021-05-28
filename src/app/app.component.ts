@@ -16,10 +16,14 @@ export class AppComponent implements OnInit {
 	constructor(private starWarsService: StarWarsService) {}
 
 	ngOnInit(): void {
-		this.page$ = this.starWarsService.getPeoplePage()
+		this.loadData()
 	}
 
 	selectedPersonChanged(selectedPerson: Person): void {
 		this.selectedPerson = selectedPerson
+	}
+
+	loadData(searchByName: string = '') {
+		this.page$ = this.starWarsService.getPeoplePage(1, searchByName)
 	}
 }

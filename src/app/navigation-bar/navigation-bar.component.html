@@ -2,13 +2,9 @@
 	<div class="container-fluid">
 		<h1 class="navbar-brand mb-0">Star Wars characters</h1>
 	</div>
-	<form class="d-flex mb-0 mr-3">
-		<input
-			class="search-input form-control"
-			type="search"
-			placeholder="Search"
-			aria-label="Search"
-		/>
+	<form [formGroup]="searchForm" (ngSubmit)="onSubmitSearch()" class="d-flex mb-0 mr-3">
+		<input [formControl]="searchTextControl" class="search-input form-control" type="search" placeholder="Search"
+			aria-label="Search" />
 		<button class="btn btn-outline-success" type="submit">Search</button>
 	</form>
 </nav>

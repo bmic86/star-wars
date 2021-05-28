@@ -1,5 +1,5 @@
 <div>
-	<app-navigation-bar></app-navigation-bar>
+	<app-navigation-bar (onSearchPerformed)="loadData($event)"></app-navigation-bar>
 	<div class="container-fluid">
 		<div class="row my-3">
 			<div class="col-5 col-sm-4 col-xl-3">
