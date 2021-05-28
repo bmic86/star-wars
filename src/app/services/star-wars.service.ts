@@ -10,9 +10,12 @@ import { Starship } from '../models/starship'
 export class StarWarsService {
 	constructor(private httpClient: HttpClient) {}
 
-	getPeoplePage(page: number = 1): Observable<PeoplePage> {
+	getPeoplePage(
+		page: number = 1,
+		searchByName: string = ''
+	): Observable<PeoplePage> {
 		return this.httpClient
-			.get<PeoplePage>(`http://swapi.dev/api/people/?page=${page}`)
+			.get<PeoplePage>(this.generatePeoplePageUrl(page, searchByName?.trim()))
 			.pipe(
 				map((peoplePage: PeoplePage) => {
 					peoplePage.results = peoplePage.results.map((person: any) => {
@@ -44,5 +47,11 @@ export class StarWarsService {
 					return peoplePage
 				})
 			)
+	}
+
+	private generatePeoplePageUrl(page: number, searchByName: string): string {
+		return searchByName
+			? `http://swapi.dev/api/people/?page=${page}&search=${searchByName}`
+			: `http://swapi.dev/api/people/?page=${page}`
 	}
 }
