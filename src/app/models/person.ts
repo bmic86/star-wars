@@ -10,6 +10,6 @@ export interface Person {
 	birthYear: string
 	gender: string
 	vehiclesNum: number
-	species$: Observable<string[]>
+	specieNames$: Observable<string[]>
 	starships$: Observable<Starship[]>
 }

@@ -11,42 +11,56 @@ export class StarWarsService {
 	constructor(private httpClient: HttpClient) {}
 
 	getPeoplePage(
-		page: number = 1,
+		pageNum: number = 1,
 		searchByName: string = ''
 	): Observable<PeoplePage> {
 		return this.httpClient
-			.get<PeoplePage>(this.generatePeoplePageUrl(page, searchByName?.trim()))
+			.get(this.generatePeoplePageUrl(pageNum, searchByName?.trim()))
 			.pipe(
-				map((peoplePage: PeoplePage) => {
-					peoplePage.results = peoplePage.results.map((person: any) => {
-						return {
-							name: person.name,
-							birthYear: person.birth_year,
-							gender: person.gender,
-							skinColor: person.skin_color,
-							hairColor: person.hair_color,
-							height: person.height,
-							mass: person.mass,
-							vehiclesNum: person.vehicles?.length ?? 0,
-							species$: (
-								forkJoin(
-									person.species.map((specieUrl: string) =>
-										this.httpClient.get(specieUrl).pipe(pluck('name'))
-									)
-								) as Observable<string[]>
-							).pipe(shareReplay()),
-							starships$: (
-								forkJoin(
-									person.starships.map((starshipUrl: string) =>
-										this.httpClient.get<Starship>(starshipUrl)
-									)
-								) as Observable<Starship[]>
-							).pipe(shareReplay())
-						} as Person
-					})
-					return peoplePage
+				map((swapiPeoplePage: any) => {
+					return this.createPeoplePageFromResponse(pageNum, swapiPeoplePage)
 				})
 			)
+	}
+
+	private createPeoplePageFromResponse(pageNum: number, swapiPeoplePage: any) {
+		const peoplePage: PeoplePage = {
+			pageNum: pageNum,
+			hasNextPage: !!swapiPeoplePage.next,
+			hasPreviousPage: !!swapiPeoplePage.previous,
+			results: swapiPeoplePage.results.map((swapiPerson: any) => {
+				return this.createPersonFromResponse(swapiPerson)
+			})
+		}
+		return peoplePage
+	}
+
+	private createPersonFromResponse(swapiPerson: any) {
+		const person: Person = {
+			name: swapiPerson.name,
+			birthYear: swapiPerson.birth_year,
+			gender: swapiPerson.gender,
+			skinColor: swapiPerson.skin_color,
+			hairColor: swapiPerson.hair_color,
+			height: swapiPerson.height,
+			mass: swapiPerson.mass,
+			vehiclesNum: swapiPerson.vehicles?.length ?? 0,
+			specieNames$: (
+				forkJoin(
+					swapiPerson.species.map((specieUrl: string) =>
+						this.httpClient.get(specieUrl).pipe(pluck('name'))
+					)
+				) as Observable<string[]>
+			).pipe(shareReplay()),
+			starships$: (
+				forkJoin(
+					swapiPerson.starships.map((starshipUrl: string) =>
+						this.httpClient.get<Starship>(starshipUrl)
+					)
+				) as Observable<Starship[]>
+			).pipe(shareReplay())
+		}
+		return person
 	}
 
 	private generatePeoplePageUrl(page: number, searchByName: string): string {
