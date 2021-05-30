@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { Person } from '../models/person'
 
 @Component({
@@ -6,11 +6,7 @@ import { Person } from '../models/person'
 	templateUrl: './menu-element.component.html',
 	styleUrls: ['./menu-element.component.css']
 })
-export class MenuElementComponent implements OnInit {
+export class MenuElementComponent {
 	@Input() person!: Person
 	@Input() isActive: boolean = false
-
-	constructor() {}
-
-	ngOnInit(): void {}
 }

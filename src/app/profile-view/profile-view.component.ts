@@ -1,15 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { Person } from '../models/person'
 
 @Component({
 	selector: 'app-profile-view',
-	templateUrl: './profile-view.component.html',
-	styleUrls: ['./profile-view.component.css']
+	templateUrl: './profile-view.component.html'
 })
-export class ProfileViewComponent implements OnInit {
+export class ProfileViewComponent {
 	@Input() person: Person | null = null
-
-	constructor() {}
-
-	ngOnInit(): void {}
 }

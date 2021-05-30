@@ -13,13 +13,17 @@ export class NavigationBarComponent implements OnInit {
 	searchForm!: FormGroup
 
 	ngOnInit(): void {
-		this.searchTextControl = new FormControl('')
-		this.searchForm = new FormGroup({
-			searchTextControl: this.searchTextControl
-		})
+		this.initSearchForm()
 	}
 
 	onSubmitSearch(): void {
 		this.onSearchPerformed.emit(this.searchTextControl.value)
+	}
+
+	private initSearchForm(): void {
+		this.searchTextControl = new FormControl('')
+		this.searchForm = new FormGroup({
+			searchTextControl: this.searchTextControl
+		})
 	}
 }
