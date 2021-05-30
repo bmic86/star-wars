@@ -15,7 +15,7 @@ export class StarWarsService {
 		searchByName: string = ''
 	): Observable<PeoplePage> {
 		return this.httpClient
-			.get(this.generatePeoplePageUrl(pageNum, searchByName?.trim()))
+			.get(this.generatePeoplePageUrl(pageNum, searchByName))
 			.pipe(
 				map((swapiPeoplePage: any) => {
 					return this.createPeoplePageFromResponse(pageNum, swapiPeoplePage)

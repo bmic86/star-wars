@@ -32,7 +32,7 @@
 	</li>
 </ul>
 
-<div *ngIf="(person?.starships$ | async)?.length">
+<div *ngIf="(person?.starships$ | async)?.length" class="mt-1">
 	<h3>Starships:</h3>
 	<ul>
 		<li *ngFor="let starship of person?.starships$ | async">{{ starship.name }} / {{ starship.model }}</li>
