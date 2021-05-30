@@ -1,9 +1,10 @@
 <div>
-	<app-navigation-bar (onSearchPerformed)="loadData($event)"></app-navigation-bar>
+	<app-navigation-bar (onSearchPerformed)="searchTextChanged($event)"></app-navigation-bar>
 	<div class="container-fluid">
 		<div class="row my-3">
 			<div class="col-5 col-sm-4 col-xl-3">
-				<app-menu-container [page]="(page$ | async)!" (onSelectedPersonChanged)="selectedPersonChanged($event)">
+				<app-menu-container [page]="(page$ | async)!" (onSelectedPersonChanged)="selectedPersonChanged($event)"
+					(onPageChanged)="pageChanged($event)">
 				</app-menu-container>
 			</div>
 			<div class="col-7 col-sm-8 col-xl-9">

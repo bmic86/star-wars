@@ -1,4 +1,6 @@
 <div class="list-group">
+	<app-menu-paging-element *ngIf="page?.hasPreviousPage" (click)="onPreviousPageClick()"></app-menu-paging-element>
 	<app-menu-element *ngFor="let person of page?.results" [person]="person" (click)="onMenuElementClick(person)"
 		[isActive]="selectedPerson?.name === person?.name"></app-menu-element>
+	<app-menu-paging-element *ngIf="page?.hasNextPage" (click)="onNextPageClick()"></app-menu-paging-element>
 </div>

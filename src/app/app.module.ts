@@ -9,7 +9,8 @@ import { MenuElementComponent } from './menu-element/menu-element.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { StarWarsService } from './services/star-wars.service'
 import { HttpClientModule } from '@angular/common/http'
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { MenuPagingElementComponent } from './menu-paging-element/menu-paging-element.component'
 
 @NgModule({
 	declarations: [
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 		NavigationBarComponent,
 		ProfileViewComponent,
 		MenuContainerComponent,
-		MenuElementComponent
+		MenuElementComponent,
+		MenuPagingElementComponent
 	],
 	imports: [BrowserModule, NgbModule, HttpClientModule, ReactiveFormsModule],
 	providers: [StarWarsService],

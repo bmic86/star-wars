@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
 	page$!: Observable<PeoplePage>
 	selectedPerson: Person | null = null
 
+	private searchText: string = ''
+
 	constructor(private starWarsService: StarWarsService) {}
 
 	ngOnInit(): void {
@@ -23,7 +25,16 @@ export class AppComponent implements OnInit {
 		this.selectedPerson = selectedPerson
 	}
 
-	loadData(searchByName: string = '') {
-		this.page$ = this.starWarsService.getPeoplePage(1, searchByName)
+	pageChanged(newPageNumber: number) {
+		this.loadData(newPageNumber)
+	}
+
+	searchTextChanged(newSearchText: string = '') {
+		this.searchText = newSearchText
+		this.loadData()
+	}
+
+	private loadData(pageNum: number = 1) {
+		this.page$ = this.starWarsService.getPeoplePage(pageNum, this.searchText)
 	}
 }

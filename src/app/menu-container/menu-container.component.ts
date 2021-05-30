@@ -12,6 +12,7 @@ export class MenuContainerComponent implements OnInit {
 
 	@Output() onSelectedPersonChanged: EventEmitter<Person> =
 		new EventEmitter<Person>()
+	@Output() onPageChanged: EventEmitter<number> = new EventEmitter<number>()
 
 	selectedPerson: Person | null = null
 
@@ -22,5 +23,13 @@ export class MenuContainerComponent implements OnInit {
 	onMenuElementClick(selectedPerson: Person): void {
 		this.selectedPerson = selectedPerson
 		this.onSelectedPersonChanged.emit(selectedPerson)
+	}
+
+	onPreviousPageClick(): void {
+		this.onPageChanged.emit(this.page.pageNum - 1)
+	}
+
+	onNextPageClick(): void {
+		this.onPageChanged.emit(this.page.pageNum + 1)
 	}
 }
